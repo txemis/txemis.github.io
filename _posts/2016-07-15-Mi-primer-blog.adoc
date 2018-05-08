@@ -10,8 +10,9 @@ Esto es un comienzo de algo.
 
 == Google I/O 2018
 ++++
-<iframe src="https://events.google.com/io/embed" style="width:875px;height:450px" frameborder="0" allowfullscreen></iframe>
+<iframe src="https://events.google.com/io/embed?live" style="width:875px;height:450px"</iframe>
 ++++
+
 
 == Enlaces
 
