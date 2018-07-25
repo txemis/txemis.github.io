@@ -350,7 +350,16 @@ video::67480300[vimeo]
 
 ---
 
+== spotify
 
+++++
+
+<iframe src="https://open.spotify.com/embed/user/nytimes/playlist/2YY3rAwm9tldNhlBmuMqgY" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+
+++++
+
+---
 
 
 
