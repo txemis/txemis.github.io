@@ -386,7 +386,9 @@ solo descarga el fichero
 
 ++++
 
-<iframe  style="border: 0; width: 350px; height: 470px;" src="//txemis.github.io/Copy of Hello, Colaboratory - Colaboratory.html  " scrolling="no"></iframe>
+transformando con http://nbviewer.jupyter.org/
+
+<iframe  style="border: 0; width: 350px; height: 470px;" src="//nbviewer.jupyter.org/url/txemis.github.io/Copy_of_Hello%2C_Colaboratory.ipynb  " scrolling="no"></iframe>
 
 
 ++++
