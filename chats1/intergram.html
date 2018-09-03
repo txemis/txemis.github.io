@@ -57,6 +57,11 @@ html {
    
 <script>
 
+    window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  e.prompt();
+});
+    
 </script>
 
 
