@@ -1,7 +1,7 @@
 {
   "name": "ejemplo1",
   "description": "Es mi primer ejemplo",
-  "cursor": true,
+  "cursor": false,
   "start_url": "https://txemis.github.io/local/index.html",
   "permissions": {
       "geolocation": {
