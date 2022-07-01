@@ -1,0 +1,7 @@
+{
+  "name": "ejemplo1",
+  "description": "Es mi primer ejemplo",
+  "icons": {
+    "128": "/icon.png"
+  }
+}
