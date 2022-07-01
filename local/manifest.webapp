@@ -1,6 +1,7 @@
 {
   "name": "ejemplo1",
   "description": "Es mi primer ejemplo",
+  "cursor": true,
   "icons": {
     "128": "/icon.png"
   }
