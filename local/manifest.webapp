@@ -4,6 +4,6 @@
   "cursor": true,
   "start_url": "https://txemis.github.io/local/index.html",
   "icons": {
-    "128": "icon.png"
+    "128": "https://txemis.github.io/local/icon.png"
   }
 }
