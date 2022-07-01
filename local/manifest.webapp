@@ -3,6 +3,11 @@
   "description": "Es mi primer ejemplo",
   "cursor": true,
   "start_url": "https://txemis.github.io/local/index.html",
+  "permissions": {
+      "geolocation": {
+        "description": "Get/watch your current position."
+      }
+    },
   "icons": {
     "128": "https://txemis.github.io/local/icon.png"
   }
