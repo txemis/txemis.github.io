@@ -2,6 +2,7 @@
   "name": "ejemplo1",
   "description": "Es mi primer ejemplo",
   "cursor": true,
+  "start_url": "https://txemis.github.io/local/index.html",
   "icons": {
     "128": "/icon.png"
   }
