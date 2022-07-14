@@ -1,0 +1,14 @@
+{
+  "name": "ejemplo1",
+  "description": "Es mi primer ejemplo",
+  "cursor": false,
+  "start_url": "https://txemis.github.io/local/index.html",
+  "permissions": {
+      "geolocation": {
+        "description": "Get/watch your current position."
+      }
+    },
+  "icons": {
+    "128": "https://txemis.github.io/local/icon.png"
+  }
+}
