@@ -38,12 +38,11 @@ function showPosition(position) {
     longitud = position.coords.longitude;
 }
 
-    const token = '5351751643:AAH5WZc6gRHJN7aDkUuugf4sJZuWJ48_gZU';
-    const chatId = '@Localizacion_Nokia';
+    const token = '';
+    const chatId = '@';
 
 
 function mandaTelegram(){
-//    https://api.telegram.org/bot5294478216:AAHAFohgWw5nLc18hp9rCCSnJimpzyyrfUc/sendlocation?chat_id=149197271&latitude=42.456481&longitude=-2.465851
     var api = "https://api.telegram.org/bot" + token + "/sendlocation?chat_id=" + chatId + "&latitude=" + latitud + "&longitude=" + longitud + ";"
     fetch(api);  //mirar como se implementa ?????
   }
