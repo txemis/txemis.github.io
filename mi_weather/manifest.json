@@ -23,7 +23,7 @@
       "type": "image/png" 
     }
   ],
-  "start_url": ".",
+  "start_url": "/mi_weather/index.html",
   "background_color": "#48daed",
   "theme_color": "#48daed",
   "display": "standalone",
