@@ -1,5 +1,5 @@
 {
-  "name": "Weather",
+  "name": "mi intento de Weather",
   "short_name": "weather",
   "icons": [
     {
@@ -27,6 +27,5 @@
   "background_color": "#48daed",
   "theme_color": "#48daed",
   "display": "standalone",
-  "root": ".",
-  "index": "/index.html"
+  "scope": "."
 }
