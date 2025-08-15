@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Sun–Earth–Moon orbits (ClojureScript + Scittle)</title>
+
+  <!-- ❶  Scittle runtime -->
+  <script src="https://cdn.jsdelivr.net/npm/scittle@0.6.15/dist/scittle.js"></script>
+
+  <!-- Just a little CSS to keep things centred -->
+  <style>
+    html,body {margin:0;height:100%;background:#000;color:#fff;}
+    canvas      {display:block;margin:auto;background:#000;}
+    h1          {text-align:center;font-family:sans-serif;}
+  </style>
+</head>
+<body>
+  <h1>Sun – Earth – Moon (Scittle / ClojureScript)</h1>
+  <canvas id="space" width="600" height="600"></canvas>
+
+  <!-- ❷  The ClojureScript — note the special MIME type -->
+  <script type="application/x-scittle">
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Sun – Earth – Moon   •   ClojureScript running through Scittle
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(ns orbit.core)
+
+;; ------------------------------------------------------------
+;; Canvas basics
+;; ------------------------------------------------------------
+(def canvas (.getElementById js/document "space"))
+(def ctx     (.getContext canvas "2d"))
+
+(def width   (.-width  canvas))
+(def height  (.-height canvas))
+
+;; ------------------------------------------------------------
+;; Animation state
+;; ------------------------------------------------------------
+(defonce state
+  ;; angles measured in radians
+  (atom {:earth-angle 0.0
+         :moon-angle  0.0}))
+
+;; Orbital parameters (pixels / radians-per-frame)
+(def earth-orbit-radius 200)
+(def moon-orbit-radius   50)
+
+(def ^:const sun-radius   40)
+(def ^:const earth-radius 15)
+(def ^:const moon-radius   6)
+
+(def earth-dθ 0.005)   ;; how fast the Earth moves
+(def moon-dθ  0.04)    ;; how fast the Moon moves
+
+
+;; ------------------------------------------------------------
+;; Drawing helpers
+;; ------------------------------------------------------------
+(defn clear!
+  []
+  (.clearRect ctx 0 0 width height))
+
+(defn circle!
+  "Filled circle at (x y) with radius r and the current ctx fillStyle."
+  [x y r]
+  (.beginPath ctx)
+  (.arc       ctx x y r 0 (* 2 js/Math.PI))
+  (.fill      ctx))
+
+;; ------------------------------------------------------------
+;; The main drawing function
+;; ------------------------------------------------------------
+(defn draw!
+  []
+  (let [{θe :earth-angle  θm :moon-angle} @state
+        cx (/ width  2)   ;; Sun centre
+        cy (/ height 2)
+
+        ;; Earth position
+        ex (+ cx (* earth-orbit-radius (js/Math.cos θe)))
+        ey (+ cy (* earth-orbit-radius (js/Math.sin θe)))
+
+        ;; Moon position
+        mx (+ ex (* moon-orbit-radius (js/Math.cos θm)))
+        my (+ ey (* moon-orbit-radius (js/Math.sin θm)))]
+    
+    (clear!)
+
+    ;; --- Sun -------------------------------------------------
+    (set! (.-fillStyle ctx) "yellow")
+    (circle! cx cy sun-radius)
+
+    ;; --- Earth orbital path ---------------------------------
+    (set! (.-strokeStyle ctx) "rgba(255,255,255,0.15)")
+    (.beginPath ctx)
+    (.arc ctx cx cy earth-orbit-radius 0 (* 2 js/Math.PI))
+    (.stroke ctx)
+
+    ;; --- Earth ----------------------------------------------
+    (set! (.-fillStyle ctx) "dodgerblue")
+    (circle! ex ey earth-radius)
+
+    ;; --- Moon orbital path ----------------------------------
+    (set! (.-strokeStyle ctx) "rgba(255,255,255,0.15)")
+    (.beginPath ctx)
+    (.arc ctx ex ey moon-orbit-radius 0 (* 2 js/Math.PI))
+    (.stroke ctx)
+
+    ;; --- Moon -----------------------------------------------
+    (set! (.-fillStyle ctx) "lightgray")
+    (circle! mx my moon-radius)))
+
+;; ------------------------------------------------------------
+;; State update + animation loop
+;; ------------------------------------------------------------
+(defn advance-state!
+  []
+  (swap! state
+         (fn [{:keys [earth-angle moon-angle] :as st}]
+           (-> st
+               (assoc :earth-angle (+ earth-angle earth-dθ))
+               (assoc :moon-angle  (+ moon-angle  moon-dθ))))))
+
+(defn tick!
+  []
+  (advance-state!)
+  (draw!)
+  (js/requestAnimationFrame tick!))
+
+;; ------------------------------------------------------------
+;; Kick things off
+;; ------------------------------------------------------------
+(draw!)                       ;; draw 1st frame immediately
+(js/requestAnimationFrame tick!)
+  </script>
+</body>
+</html>
+
