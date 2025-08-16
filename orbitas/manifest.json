@@ -23,7 +23,7 @@
       "type": "image/png" 
     }
   ],
-  "start_url": "/orbita/index.html",
+  "start_url": "/orbitas/index.html",
   "background_color": "#48daed",
   "theme_color": "#48daed",
   "display": "standalone",
