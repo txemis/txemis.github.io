@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
+  <!-- ❶  Añado para performance s/lighthouse -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
   <title>Sun–Earth–Moon orbits (ClojureScript + Scittle)</title>
+
+  <!-- ❶  Añado mi Manifest -->
+    <link rel="manifest" href="manifest.json">
+  
 
   <!-- ❶  Scittle runtime -->
   <script src="https://cdn.jsdelivr.net/npm/scittle@0.6.15/dist/scittle.js"></script>
@@ -135,6 +143,25 @@
 (draw!)                       ;; draw 1st frame immediately
 (js/requestAnimationFrame tick!)
   </script>
+
+  <!-- ❶  Añado mi WorkServer -->
+    <script>
+	    if ('serviceWorker' in navigator) {
+		    window.addEventListener('load', function() {
+			    navigator.serviceWorker.register('sw.js').then(function(registration) {
+				    //Registration was succesful
+				    console.log('Registered!');
+			    }, function(err) {
+				    //Registration failed
+				    console.log('ServiceWorker registration failed: ', err);
+			    }).catch(function(err) {
+				    console.log(err);
+			    });
+		    });
+            } else {
+		    console.log('service worker is not supported');
+	    }
+    </script>
 </body>
 </html>
 
