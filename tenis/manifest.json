@@ -23,7 +23,7 @@
       "type": "image/png" 
     }
   ],
-  "start_url": "/futboltv/index.html",
+  "start_url": "/tenis/index.html",
   "background_color": "#48daed",
   "theme_color": "#48daed",
   "display": "standalone",
